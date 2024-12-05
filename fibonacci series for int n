@@ -1,0 +1,38 @@
+#include<stdio.h>
+
+// Function to calculate Fibonacci number
+int fibo(int n) {
+    if (n == 0) {
+        return 0;  // Base case: Fibonacci of 0 is 0
+    } 
+    else if (n == 1) {
+        return 1;  // Base case: Fibonacci of 1 is 1
+    } 
+    else {
+        // Recursive case: Fibonacci of n is the sum of Fibonacci of (n-1) and (n-2)
+        return fibo(n - 1) + fibo(n - 2);
+    }
+}
+
+int main() {
+    int n, i;
+
+    // Ask user to input the number of terms for the Fibonacci sequence
+    printf("Enter the number of terms: ");
+    scanf("%d", &n);
+
+    // Print the Fibonacci series
+    printf("Fibonacci series: ");
+    
+    for (i = 0; i < n; i++) {
+        // Print the Fibonacci number for each i
+        printf("%d", fibo(i));
+
+        // If it's not the last term, print a comma
+        if (i < n - 1) {
+            printf(", ");
+        }
+    }
+    printf("\n"); // New line after the series
+    return 0; // End of the program
+}
