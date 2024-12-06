@@ -1,0 +1,36 @@
+#include <math.h>
+#include <stdio.h>
+
+int main() {
+    double a, b, c, discriminant, root1, root2, realPart, imagPart;
+
+    // Input coefficients
+    printf("Enter the values of a, b, c for the quadratic equation 'ax^2 + bx + c': ");
+    scanf("%lf %lf %lf", &a, &b, &c);
+
+    // Display the quadratic equation
+    printf("The given quadratic equation is: %.2lfx^2 + %.2lfx + %.2lf\n", a, b, c);
+
+    // Calculate the discriminant
+    discriminant = b * b - 4 * a * c;
+
+    // Condition for real and different roots
+    if (discriminant > 0) {
+        root1 = (-b + sqrt(discriminant)) / (2 * a);
+        root2 = (-b - sqrt(discriminant)) / (2 * a);
+        printf("Root1 = %.2lf and Root2 = %.2lf\n", root1, root2);
+    }
+    // Condition for real and equal roots
+    else if (discriminant == 0) {
+        root1 = root2 = -b / (2 * a);
+        printf("Root1 = Root2 = %.2lf\n", root1);
+    }
+    // Condition for complex roots
+    else {
+        realPart = -b / (2 * a);
+        imagPart = sqrt(-discriminant) / (2 * a);
+        printf("Root1 = %.2lf + %.2lfi and Root2 = %.2lf - %.2lfi\n", realPart, imagPart, realPart, imagPart);
+    }
+
+    return 0;
+}
