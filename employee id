@@ -1,0 +1,71 @@
+#include <stdio.h>
+#include <string.h>
+
+typedef struct {
+    int id;
+    char name[100];
+    char designation[100];
+    char department[100];
+    float basic_pay;
+} Employee;
+
+void paySlip(Employee emp) {
+    float hra = 0.2 * emp.basic_pay;
+    float da = 0.1 * emp.basic_pay;
+    float deductions = 0.05 * emp.basic_pay;
+    float gross_pay = emp.basic_pay + hra + da;
+    float net_salary = gross_pay - deductions;
+
+    printf("\nPayslip for Employee: %s\n", emp.name);
+    printf("Employee ID: %d\n", emp.id);
+    printf("Designation: %s\n", emp.designation);
+    printf("Department: %s\n", emp.department);
+    printf("Basic Pay: %.2f\n", emp.basic_pay);
+    printf("HRA: %.2f\n", hra);
+    printf("DA: %.2f\n", da);
+    printf("Deductions: %.2f\n", deductions);
+    printf("Gross Pay: %.2f\n", gross_pay);
+    printf("Net Salary: %.2f\n", net_salary);
+    printf("\n");
+}
+
+int main() {
+    int num;
+
+    printf("Enter the number of employees: ");
+    scanf("%d", &num);
+    printf("\n");
+
+    Employee emp[num];
+
+    for(int i = 0; i < num; i++) {
+        printf("---------- Employee %d Detail ----------\n", i+1);
+        printf("Enter the Employee ID: ");
+        scanf("%d", &emp[i].id);
+        getchar();
+
+        printf("Enter the Employee Name: ");
+        fgets(emp[i].name, sizeof(emp[i].name), stdin);
+        emp[i].name[strcspn(emp[i].name, "\n")] = '\0';
+
+        printf("Enter the Designation of the Employee: ");
+        fgets(emp[i].designation, sizeof(emp[i].designation), stdin);
+        emp[i].designation[strcspn(emp[i].designation, "\n")] = '\0';
+
+        printf("Enter the Department of the Employee: ");
+        fgets(emp[i].department, sizeof(emp[i].department), stdin);
+        emp[i].department[strcspn(emp[i].department, "\n")] = '\0';
+
+        printf("Enter the Basic Pay of the Employee: ");
+        scanf("%f", &emp[i].basic_pay);
+        getchar();
+        printf("\n");
+    }
+
+    printf("---------- Payslips ----------\n");
+    for(int i = 0; i < num; i++) {
+        paySlip(emp[i]);
+    }
+
+   return 0;
+}
