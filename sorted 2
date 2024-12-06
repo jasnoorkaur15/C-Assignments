@@ -1,0 +1,45 @@
+#include <stdio.h>
+
+// Function to sort an array in ascending order using Bubble Sort
+void sortArray(int arr[], int n) {
+    int temp; // Temporary variable for swapping
+
+    // Outer loop controls the number of passes
+    for (int i = 0; i < n - 1; i++) {
+        // Inner loop performs comparisons and swaps
+        for (int j = 0; j < n - 1 - i; j++) {
+            if (arr[j] > arr[j + 1]) { // If adjacent elements are in the wrong order
+                // Swap arr[j] and arr[j+1]
+                temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+            }
+        }
+    }
+}
+
+int main() {
+    int arr[100], n;
+
+    // Input: size of the array
+    printf("Enter the number of elements in the array: ");
+    scanf("%d", &n);
+
+    // Input: elements of the array
+    printf("Enter %d elements:\n", n);
+    for (int i = 0; i < n; i++) {
+        scanf("%d", &arr[i]);
+    }
+
+    // Call the sort function
+    sortArray(arr, n);
+
+    // Output: sorted array
+    printf("Sorted array in ascending order:\n");
+    for (int i = 0; i < n; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+
+    return 0;
+}
