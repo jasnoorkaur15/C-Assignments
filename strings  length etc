@@ -1,0 +1,100 @@
+#include<stdio.h>
+#include<string.h>
+
+int get_slen(char*);
+int get_charnum(char*);
+int get_vowel(char*);
+void string_copy(char*, char*);
+
+int main(){
+    char str1[20], str2[20];
+    int choice = 0;
+
+    // Accepting first string
+    printf("Enter the first string: ");
+    fgets(str1, sizeof(str1), stdin);
+    str1[strcspn(str1, "\n")] = '\0'; // Remove newline character
+
+    // Accepting second string
+    printf("Enter the second string: ");
+    fgets(str2, sizeof(str2), stdin);
+    str2[strcspn(str2, "\n")] = '\0'; // Remove newline character
+
+    // Display menu for operations
+    printf("Enter operations:\n1. Length\n2. Number of characters\n3. Number of vowels\n4. Copy string\n5. Exit\n");
+    scanf("%d", &choice);  // Read user choice
+
+    // Switch statement to handle the operations
+    switch(choice){
+        case 1:
+            printf("\nString length is: %d\n", get_slen(str1));
+            break;
+
+        case 2:
+            printf("\nNumber of characters in string is: %d\n", get_charnum(str1));
+            break;
+
+        case 3:
+            printf("\nNumber of vowels: %d\n", get_vowel(str1));
+            break;
+
+        case 4:
+            string_copy(str1, str2);
+            printf("Copied string is: %s\n", str2);
+            break;
+
+        case 5:
+            return 0; // Exit the program
+
+        default:
+            printf("Invalid choice\n");
+            break;
+    }
+
+    return 0;
+}
+
+// Function to get string length
+int get_slen(char *p){
+    int num = 0;
+    while (*p != '\0') {  // Loop until null character
+        num++;
+        p++;  // Move pointer to next character
+    }
+    return num;
+}
+
+// Function to get number of characters excluding commas
+int get_charnum(char *p){
+    int num = 0;
+    while (*p != '\0') {  // Loop until null character
+        if (*p != ',') {  // Count only non-comma characters
+            num++;
+        }
+        p++;  // Move pointer to next character
+    }
+    return num;
+}
+
+// Function to get the number of vowels
+int get_vowel(char *p){
+    int num = 0;
+    while (*p != '\0') {  // Loop until null character
+        if (*p == 'a' || *p == 'e' || *p == 'i' || *p == 'o' || *p == 'u' ||
+            *p == 'A' || *p == 'E' || *p == 'I' || *p == 'O' || *p == 'U') {
+            num++;  // Increment count for each vowel
+        }
+        p++;  // Move pointer to next character
+    }
+    return num;
+}
+
+// Function to copy one string to another
+void string_copy(char *s, char *d){
+    while (*s != '\0') {  // Loop until null character
+        *d = *s;  // Copy character from source to destination
+        s++;  // Move source pointer to next character
+        d++;  // Move destination pointer to next character
+    }
+    *d = '\0';  // Null-terminate the copied string
+}
