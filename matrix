@@ -1,0 +1,81 @@
+#include <stdio.h>
+
+int main() {
+    int mat1[3][3], mat2[3][3], add[3][3], sub[3][3], trans[3][3], choice;
+
+    // Input for the first matrix
+    printf("Enter elements of the first 3x3 matrix:\n");
+    for (int i = 0; i < 3; i++)
+        for (int j = 0; j < 3; j++)
+            scanf("%d", &mat1[i][j]);
+
+    // Display the first matrix
+    printf("First matrix:\n");
+    for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 3; j++)
+            printf("%d\t", mat1[i][j]);
+        printf("\n");
+    }
+
+    // Input for the second matrix
+    printf("Enter elements of the second 3x3 matrix:\n");
+    for (int i = 0; i < 3; i++)
+        for (int j = 0; j < 3; j++)
+            scanf("%d", &mat2[i][j]);
+
+    // Display the second matrix
+    printf("Second matrix:\n");
+    for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 3; j++)
+            printf("%d\t", mat2[i][j]);
+        printf("\n");
+    }
+
+    // Matrix addition and subtraction
+    for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 3; j++) {
+            add[i][j] = mat1[i][j] + mat2[i][j];
+            sub[i][j] = mat1[i][j] - mat2[i][j];
+        }
+    }
+
+    // Transpose of the first matrix
+    for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 3; j++) {
+            trans[j][i] = mat1[i][j];
+        }
+    }
+
+    // User's choice for operation
+    printf("Type 1 for addition, 2 for subtraction, 3 for transpose:\n");
+    scanf("%d", &choice);
+
+    // Handle user's choice
+    if (choice == 1) {
+        printf("Matrix addition:\n");
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++)
+                printf("%d\t", add[i][j]);
+            printf("\n");
+        }
+    } else if (choice == 2) {
+        printf("Matrix subtraction:\n");
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++)
+                printf("%d\t", sub[i][j]);
+            printf("\n");
+        }
+    } else if (choice == 3) {
+        printf("Transpose of the first matrix:\n");
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++)
+                printf("%d\t", trans[i][j]);
+            printf("\n");
+        }
+    } else {
+        printf("Invalid choice! Please type a valid number.\n");
+    }
+
+    return 0;
+}
+
